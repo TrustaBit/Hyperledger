@@ -27,6 +27,8 @@ enum PaymentOption {
    o String firstName
    o String lastName
    o String emailAddress
+   --> Account[] accounts
+   --> CreditCard[] creditCards
    o PaymentOption preferredPaymentOption
    o Double tokenBalance
    o Double cashBalance
@@ -47,8 +49,8 @@ enum PaymentOption {
 * Description of Participant : Regulator
 **/
 
- participant Regulator identified by regulatorID {
-   o String regulatorID
+ participant Regulator identified by regulatorId {
+   o String regulatorId
 }
 
 /**
@@ -74,15 +76,19 @@ asset Flight identified by flightId {
 asset Account identified by accountId {
   --> Customer accountHolder
   o String accountId
-  o String contactId
-  o DateTime publishedFlightDepatureTime
-  o DateTime publishedFlightArrivalTime
-  o DateTime actualFlightDepatureTime
-  o DateTime actualFlightArrivalTime
-  o String Status optional
-  o DateTime flightDate 
-  o String reasonForDelay optional
-  
+  o Integer accountNumber
+  o Integer sortCode
+  o Integer aba 
+  o String iban 
+}
+
+asset CreditCard identified by creditCardId{
+  o String creditCardId
+  o String creditCardProvider
+  o Integer creditCardNumber
+  o Integer expiryDate
+  o Integer validFromDate
+  o Integer securityCode
 }
 
 /**
