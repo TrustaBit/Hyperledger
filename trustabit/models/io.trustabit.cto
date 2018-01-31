@@ -10,7 +10,7 @@ namespace io.trustabit
 
 /**
 *Description of Enum : Payment Options
-* Customer has the choice of choosing between cash and fiat 
+* Customer has the choice of accepting payment in cash or fiat 
 **/
 
 enum PaymentOption {
@@ -22,20 +22,19 @@ enum PaymentOption {
 *Description of Participant : Customer
 **/
 
- participant Customer identified by customerId {
-   o String customerId
+ participant Customer identified by emailAddress {
+   o String emailAddress
    o String firstName
    o String lastName
-   o String emailAddress
-   --> Account[] accounts
-   --> CreditCard[] creditCards
    o PaymentOption preferredPaymentOption
    o Double tokenBalance
    o Double cashBalance
+   --> Account[] accounts
+   --> CreditCard[] creditCards
+   --> Flight currentDelayedFlight
 
  }
 
- 
 /**
 * Description of Participant : Airline
 **/
@@ -80,6 +79,7 @@ asset Account identified by accountId {
   o Integer sortCode
   o Integer aba 
   o String iban 
+  o String bankAddress
 }
 
 asset CreditCard identified by creditCardId{
