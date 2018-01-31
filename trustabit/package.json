@@ -1,0 +1,11 @@
+{
+  "name": "trustabit",
+  "version": "0.0.1",
+  "description": "Trustabit Composer Model",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Samuel Dare",
+  "email": "samuel.dare@trustabit.io",
+  "license": "Apache-2.0"
+}
