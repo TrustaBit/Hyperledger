@@ -1,20 +1,115 @@
 /**
- * Write your model definitions here
- */
+* For the first iteration of the POC, all the model definitions
+* will be placed in one file. As the project evolves, we might 
+*proceed to modularize the model (i.e seperate concerns)  
+* TO DO : Add resource definition for paymentDetails and map to customer 
+*
+**/
 
 namespace io.trustabit
 
-participant User identified by email {
-  o String email
+/**
+*Description of Enum : Payment Options
+* Customer has the choice of choosing between cash and fiat 
+**/
+
+enum PaymentOption {
+  o Tokens
+  o Cash
 }
 
-asset Asset identified by assetId {
-  o String assetId
-  o String value
+/**
+*Description of Participant : Customer
+**/
+
+ participant Customer identified by customerId {
+   o String customerId
+   o String firstName
+   o String lastName
+   o String emailAddress
+   o PaymentOption preferredPaymentOption
+   o Double tokenBalance
+   o Double cashBalance
+
+ }
+
+ 
+/**
+* Description of Participant : Airline
+**/
+
+ participant Airline identified by airlineId {
+   o String airlineId
+   o String airlineName
+ }
+
+/**
+* Description of Participant : Regulator
+**/
+
+ participant Regulator identified by regulatorID {
+   o String regulatorID
 }
 
-transaction ChangeAssetValue {
-  o String transactionId
-  o String newValue
-  --> Asset relatedAsset
+/**
+* Description of Asset : Flight
+**/
+asset Flight identified by flightId {
+  --> Airline carrier
+  o String flightId
+  o String contactId
+  o DateTime publishedFlightDepatureTime
+  o DateTime publishedFlightArrivalTime
+  o DateTime actualFlightDepatureTime
+  o DateTime actualFlightArrivalTime
+  o String Status optional
+  o DateTime flightDate 
+  o String reasonForDelay optional
+  
 }
+
+/**
+* Description of Asset : Account
+**/
+asset Account identified by accountId {
+  --> Customer accountHolder
+  o String accountId
+  o String contactId
+  o DateTime publishedFlightDepatureTime
+  o DateTime publishedFlightArrivalTime
+  o DateTime actualFlightDepatureTime
+  o DateTime actualFlightArrivalTime
+  o String Status optional
+  o DateTime flightDate 
+  o String reasonForDelay optional
+  
+}
+
+/**
+* Transaction to pay tokens
+**/
+transaction payToken {
+  o Integer tokenAmount
+}
+
+/**
+* Transaction to pay Fiat
+**/
+transaction payFiat {
+  o Integer fiatAmount
+}
+/**
+* Event to pay Token
+**/
+event tokenPaid {
+  o String makeTokenPayment
+}
+/**
+* Event to pay Fiat
+**/
+event fiatPaid {
+  o String makeFiatPayment
+}
+
+
+
