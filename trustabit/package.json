@@ -1,11 +1,22 @@
 {
   "name": "trustabit",
   "version": "0.0.1",
-  "description": "Trustabit Composer Model",
+  "description": "Business Network Definitions for composer instance",
   "scripts": {
     "test": "mocha --recursive"
   },
   "author": "Samuel Dare",
   "email": "samuel.dare@trustabit.io",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "latest",
+    "composer-client": "latest",
+    "composer-common": "latest",
+    "composer-connector-embedded": "latest",
+    "chai": "latest",
+    "eslint": "latest",
+    "istanbul": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
 }
